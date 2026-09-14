@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Neha Voice Assistant</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<main class="shell">
+<section class="card">
+<header>
+<div>
+<div class="eyebrow">PYTHON • AI • PRODUCTIVITY</div>
+<h1>Neha <span>Voice Assistant</span></h1>
+<p>Browser-powered voice assistant with a Python Flask engine.</p>
+</div>
+<div id="state" class="pill">READY</div>
+</header>
+
+<div class="hero">
+<div class="orb" id="orb"></div>
+<div class="hero-copy">
+<h2 id="heroTitle">I'm ready.</h2>
+<p id="heroText">Click the microphone and speak naturally.</p>
+</div>
+<button id="mic" onclick="toggleListen()">🎙 Start Listening</button>
+</div>
+
+<div class="grid">
+<section class="panel">
+<h3>Conversation</h3>
+<div id="log" class="log">
+<div class="msg assistant"><b>Assistant</b><span>Hello! I’m ready. Try “What is the time?” or “Search Python programming”.</span></div>
+</div>
+</section>
+
+<section class="panel">
+<h3>Quick Actions</h3>
+<div class="actions">
+<button onclick="runQuick('what is the time')">🕒 Time</button>
+<button onclick="runQuick('what is today')">📅 Date</button>
+<button onclick="runQuick('open youtube')">▶ YouTube</button>
+<button onclick="runQuick('open github')">◉ GitHub</button>
+<button onclick="runQuick('open gmail')">✉ Gmail</button>
+<button onclick="runQuick('open maps')">📍 Maps</button>
+<button onclick="runQuick('search Python programming')">🔎 Search</button>
+<button onclick="runQuick('weather in Delhi')">☁ Weather</button>
+</div>
+</section>
+</div>
+
+<section class="panel command-panel">
+<h3>Try saying</h3>
+<div class="chips">
+<span>"Calculate 25 times 4"</span>
+<span>"What is the time?"</span>
+<span>"Open YouTube"</span>
+<span>"Search machine learning"</span>
+<span>"Weather in Delhi"</span>
+<span>"Help"</span>
+</div>
+</section>
+
+<footer>Voice recognition uses your browser microphone • Python Flask backend • No PyAudio required</footer>
+</section>
+</main>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
