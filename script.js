@@ -1,7 +1,25 @@
-const form=document.getElementById("form"),result=document.getElementById("result"),error=document.getElementById("error");
-form.addEventListener("submit",async e=>{e.preventDefault();result.classList.add("hidden");error.classList.add("hidden");
-const weight=Number(document.getElementById("weight").value),height=Number(document.getElementById("height").value);
-if(weight<=0||height<=0){error.textContent="Please enter positive values.";error.classList.remove("hidden");return}
-try{const r=await fetch("/calculate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({weight,height})}),d=await r.json();
-if(!r.ok)throw Error(d.message);document.getElementById("bmi").textContent=d.bmi;document.getElementById("cat").textContent=d.category;result.classList.remove("hidden")}
-catch(x){error.textContent=x.message||"Unable to calculate BMI.";error.classList.remove("hidden")}});
+async function generatePassword(){
+  const payload={
+    length:Number(document.getElementById("length").value),
+    uppercase:document.getElementById("uppercase").checked,
+    lowercase:document.getElementById("lowercase").checked,
+    numbers:document.getElementById("numbers").checked,
+    symbols:document.getElementById("symbols").checked
+  };
+  const message=document.getElementById("message");
+  message.textContent="";
+  try{
+    const res=await fetch("/generate",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(payload)});
+    const data=await res.json();
+    if(!res.ok) throw new Error(data.error||"Unable to generate password.");
+    document.getElementById("password").textContent=data.password;
+    document.getElementById("strength").textContent=`Generated ${data.password.length}-character password`;
+  }catch(err){message.textContent=err.message;}
+}
+async function copyPassword(){
+  const value=document.getElementById("password").textContent;
+  if(!value || value.startsWith("Click Generate")) return;
+  await navigator.clipboard.writeText(value);
+  document.getElementById("strength").textContent="Password copied to clipboard.";
+}
+generatePassword();

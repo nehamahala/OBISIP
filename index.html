@@ -1,18 +1,56 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BodyMetric — BMI Calculator</title>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neha Password Studio</title>
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head><body><main class="page"><section class="card">
-<header><div class="logo">BMI</div><div><h1>BodyMetric</h1><p>Smart BMI Calculator</p></div></header>
-<div class="content"><div class="intro"><small>HEALTH TOOL</small><h2>Check your Body Mass Index</h2>
-<p>Enter your weight and height to calculate your BMI instantly.</p></div>
-<form id="form"><div><label>Weight <span>(kg)</span></label><input id="weight" type="number" min="1" step=".1" placeholder="e.g. 60" required></div>
-<div><label>Height <span>(cm)</span></label><input id="height" type="number" min="1" step=".1" placeholder="e.g. 170" required></div>
-<button>Calculate BMI <b>→</b></button></form>
-<div id="result" class="result hidden"><small>YOUR BMI</small><div id="bmi" class="bmi">--</div><div id="cat" class="cat">--</div>
-<div class="scale"><span>Underweight</span><span>Normal</span><span>Overweight</span><span>Obesity</span></div></div>
-<div id="error" class="error hidden"></div>
-<div class="info"><strong>BMI ranges</strong><span>Underweight: below 18.5</span><span>Normal: 18.5–24.9</span><span>Overweight: 25–29.9</span><span>Obesity: 30 or above</span></div>
-</div><footer>Built with Python & Flask · BMI is a screening measure, not a diagnosis.</footer>
-</section></main><script src="{{ url_for('static', filename='script.js') }}"></script></body></html>
+</head>
+<body>
+<main class="shell">
+  <section class="card">
+    <div class="heading">
+      <div>
+        <div class="tag">PYTHON WEB PROJECT</div>
+        <h1>Neha <span>Password Studio</span></h1>
+        <p>Secure random password generator</p>
+      </div>
+      <div class="badge">SECURE</div>
+    </div>
+
+    <section class="output">
+      <div id="password">Click Generate to create a password</div>
+      <button class="copy" onclick="copyPassword()">Copy</button>
+    </section>
+
+    <div id="strength" class="strength">Waiting for a password…</div>
+
+    <section class="controls">
+      <div class="row">
+        <label>Password length <strong id="lengthValue">16</strong></label>
+        <input id="length" type="range" min="8" max="64" value="16"
+               oninput="document.getElementById('lengthValue').textContent=this.value">
+      </div>
+
+      <div class="types">
+        <label><input id="uppercase" type="checkbox" checked> Uppercase</label>
+        <label><input id="lowercase" type="checkbox" checked> Lowercase</label>
+        <label><input id="numbers" type="checkbox" checked> Numbers</label>
+        <label><input id="symbols" type="checkbox" checked> Symbols</label>
+      </div>
+
+      <button class="generate" onclick="generatePassword()">Generate Password</button>
+      <button class="secondary" onclick="generatePassword()">Generate Another</button>
+    </section>
+
+    <section class="tips">
+      <h2>Why this is stronger</h2>
+      <p>The generator uses Python's <code>secrets</code> module and guarantees at least one character from every selected character group.</p>
+    </section>
+
+    <div id="message" class="message"></div>
+  </section>
+</main>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
